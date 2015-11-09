@@ -1,0 +1,9 @@
+description "{{ .Name }} container"
+author "Me"
+start on filesystem and started docker
+stop on runlevel [!2345]
+respawn
+script
+ /path/to/crane --config /path/to/crane.yml run {{ .Name }}
+end script
+
