@@ -7,5 +7,5 @@ A collection of templates to use with
 ```
 crane generate --template dot.tmpl
 crane generate --template dot.tmpl --output graph.dot
-crane generate --template dot.tmpl --output %s.dot
+crane generate --template upstart.tmpl --output %s.conf
 ```
