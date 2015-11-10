@@ -1,0 +1,56 @@
+{{ range .Containers }}{{ .ActualName }}:
+  image: {{ .Image }}{{ if .BuildParams.Context }}
+  build: {{ .BuildParams.Context }}{{ end }}{{ if .BuildParams.File }}
+  dockerfile: {{ .BuildParams.File }}{{ end }}{{ if .RunParams.CapAdd }}
+  cap_add:{{ range .RunParams.CapAdd }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.CapDrop }}
+  cap_drop:{{ range .RunParams.CapDrop }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.Cmd }}
+  command:{{ range .RunParams.Cmd }} {{ . }}{{ end }}{{ end }}{{ if .RunParams.CgroupParent }}
+  cgroup_parent: {{ .RunParams.CgroupParent }}{{ end }}{{ if .RunParams.Device }}
+  devices:{{ range .RunParams.Device }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.Dns }}
+  dns:{{ range .RunParams.Dns }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.DnsSearch }}
+  dns_search:{{ range .RunParams.DnsSearch }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.EnvFile }}
+  env_file:{{ range .RunParams.EnvFile }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.Env }}
+  environment:{{ range .RunParams.Env }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.Expose }}
+  expose:{{ range .RunParams.Expose }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.AddHost }}
+  extra_hosts:{{ range .RunParams.AddHost }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.Label }}
+  labels:{{ range .RunParams.Label }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.Link }}
+  links:{{ range .RunParams.Link }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.LogDriver }}
+  log_driver: {{ .RunParams.LogDriver }}{{ end }}{{ if .RunParams.LogOpt }}
+  log_opt:{{ range .RunParams.LogOpt }}
+    - {{ . }}{{ end }}{{ end }}{{ if ne .RunParams.Net "bridge" }}
+  net: {{ .RunParams.Net }}{{ end }}{{ if .RunParams.Pid }}
+  pid: {{ .RunParams.Pid }}{{ end }}{{ if .RunParams.Publish }}
+  ports:{{ range .RunParams.Publish }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.SecurityOpt }}
+  security_opt:{{ range .RunParams.SecuirtyOpt }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.Volume }}
+  volumes:{{ range .RunParams.Volume }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.VolumesFrom }}
+  volumes_from:{{ range .RunParams.VolumesFrom }}
+    - {{ . }}{{ end }}{{ end }}{{ if .RunParams.CpuShares }}
+  cpu_shared: {{ .RunParams.CpuShares }}{{ end }}{{ if .RunParams.Cpuset }}
+  cpuset: {{ .RunParams.Cpuset }}{{ end }}{{ if .RunParams.Entrypoint }}
+  entrypoint: {{ .RunParams.Entrypoint }}{{ end }}{{ if .RunParams.User }}
+  user: {{ .RunParams.User }}{{ end }}{{ if .RunParams.Workdir }}
+  working_dir: {{ .RunParams.Workdir }}{{ end }}{{ if .RunParams.Hostname }}
+  hostname: {{ .RunParams.Hostname }}{{ end }}{{ if .RunParams.MacAddress }}
+  mac_address: {{ .RunParams.MacAddress }}{{ end }}{{ if .RunParams.Memory }}
+  memory_limit: {{ .RunParams.Memory }}{{ end }}{{ if .RunParams.MemorySwap }}
+  memswap_limit: {{ .RunParams.MemorySwap }}{{ end }}{{ if .RunParams.Privileged }}
+  privileged: {{ .RunParams.Privileged }}{{ end }}{{ if .RunParams.Restart }}
+  restart: {{ .RunParams.Restart }}{{ end }}{{ if .RunParams.ReadOnly }}
+  read_only: {{ .RunParams.ReadOnly }}{{ end }}{{ if .RunParams.Interactive }}
+  stdin_open: {{ .RunParams.Interactive }}{{ end }}{{ if .RunParams.Tty }}
+  tty: {{ .RunParams.Tty }}{{ end }}
+{{ end }}
