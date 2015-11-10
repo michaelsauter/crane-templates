@@ -1,9 +1,6 @@
 digraph {
-{{ range $container := .Containers }}
-"{{ .Name }}" [style=bold]
-{{ range .RunParams.Link }} "{{ $container.Name }}"->"{{ . }}"
-{{ end }}{{ range .RunParams.VolumesFrom }} "{{ $container.Name }}"->"{{ . }}" [style=dashed]
-{{ end }}{{ if ne .RunParams.Net "bridge" }} "{{ $container.Name }}"->"{{ .RunParams.Net }}" [style=dotted]
-{{ end }}
-{{ end }}
-}
+{{ range $container := .Containers }}  "{{ .Name }}" [style=bold]
+{{ range .Dependencies.Link }}  "{{ $container.Name }}"->"{{ . }}"
+{{ end }}{{ range .Dependencies.VolumesFrom }}  "{{ $container.Name }}"->"{{ . }}" [style=dashed]
+{{ end }}{{ if .Dependencies.Net }}  "{{ $container.Name }}"->"{{ . }}" [style=dotted]
+{{ end }}{{ end }}}
