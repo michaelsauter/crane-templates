@@ -1,0 +1,16 @@
+[Unit]
+Description={{ .Name }} container
+Requires=docker.service{{ range .Dependencies.All }} {{ . }}.service{{ end }}
+After=docker.service{{ range .Dependencies.All }} {{ . }}.service{{ end }}
+
+[Service]
+EnvironmentFile=/path/to/params.env
+Restart=on-failure
+RestartSec=10
+ExecStartPre=/bin/sleep 2
+# Be sure that every 'detach' attribute in crane.yml is unset
+ExecStart=/path/to/crane --config /path/to/crane.yml run {{ .Name }}
+ExecStop=/path/to/crane --config /path/to/crane.yml stop {{ .Name }}
+
+[Install]
+WantedBy=multi-user.target
